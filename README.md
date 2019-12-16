@@ -8,16 +8,16 @@
 
 -->
 
-# Project name here
+# Test project
 
-> Summary description here.
+> With nice text
 
 
 This file will become your README and also the index of your documentation.
 
 ## Install
 
-`pip install your_project_name`
+`pip install nb` # though this is not going to be published
 
 ## How to use
 
@@ -25,7 +25,7 @@ Fill me in please! Don't forget code examples:
 <div class="codecell" markdown="1">
 <div class="input_area" markdown="1">
 
-```
+```python
 1+1
 ```
 
