@@ -234,8 +234,6 @@ def varattavat_tunnit(tila, dt_start, dt_end):
     
     dt_range = [dt_start.date(), dt_end.date()]
     
-    periods = tila.periods.filter(start__range=dt_range, end__range=dt_range)
-    
     dt_tz_range = DateTimeTZRange(*dt_range)
     
     openings = ResourceDailyOpeningHours.objects.filter(
