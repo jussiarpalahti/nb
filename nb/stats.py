@@ -225,12 +225,33 @@ def hkvaraukset_tunneittain(tila, dt_start, dt_end):
     except AttributeError:
         return 0
 
+
 #%%
 
 
 def varattavat_tunnit(tila, dt_start, dt_end):
     # TODO: do this
-    return 0
+    
+    dt_range = [dt_start.date(), dt_end.date()]
+    
+    periods = tila.periods.filter(start__range=dt_range, end__range=dt_range)
+    
+    dt_tz_range = DateTimeTZRange(*dt_range)
+    
+    openings = ResourceDailyOpeningHours.objects.filter(
+        resource__unit=tila, open_between__contained_by=dt_tz_range
+    )
+
+    all_avail_time = sum(
+        [
+            (
+                one_opening.open_between.upper - one_opening.open_between.lower
+            ).total_seconds()
+            for one_opening in openings
+        ]
+    )
+
+    return all_avail_time / 60
 
 
 # %%
